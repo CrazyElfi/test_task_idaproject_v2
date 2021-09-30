@@ -4,13 +4,14 @@
     <form
       class="formAdding"
       action="">
-      <label for="nameProduct">
+      <label for="nameProduct"
+             class="importantRow">
         Наименование товара
       </label>
       <input
-        class=""
         name="nameProduct"
         id="nameProduct"
+        type="text"
         placeholder="Введите наименование товара"
       />
 
@@ -22,21 +23,25 @@
         rows="6"
       > </textarea>
 
-      <label for="linkAtImg">
+      <label for="linkAtImg"
+             class="importantRow">
         Ссылка на изображение товара
       </label>
       <input
         name="linkAtImg"
         id="linkAtImg"
+        type="url"
         placeholder="Введите ссылку"
       >
 
-      <label for="priceProduct">
+      <label for="priceProduct"
+             class="importantRow">
         Цена товара
       </label>
       <input
         name="priceProduct"
         id="priceProduct"
+        type="number"
         placeholder="Введите цену"
       >
       <input
@@ -78,15 +83,30 @@ export default {
   label
     margin-bottom: 4px
     margin-top: 16px
+    position: relative
     &:first-child
       margin-top: 0
+    &.importantRow::after
+      position: absolute
+      background-image: url("~@/assets/images/dot-important.png")
+      content: ''
+      width: 4px
+      height: 4px
+      top: 1px
+      border-radius: 50%
+    &[for='nameProduct']::after
+      left: 95px
+    &[for='linkAtImg']::after
+      left: 135px
+    &[for='priceProduct']::after
+      left: 55px
   input, textarea
     font-size: 12px
     line-height: 15px
     padding: 10px 16px
 
     color: #B4B4B4 /* Greys / 500 */
-
+    outline: none
     background-color: transparent
     border-radius: 4px
     cursor: pointer

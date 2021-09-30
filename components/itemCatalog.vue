@@ -57,14 +57,16 @@ export default {
   width: 32px
   height: 32px
   position: absolute
-  left: 315px
-  top: -10px
+  left: 310px
+  top: -8px
   background: #FF8484
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1)
   border-radius: 10px
   border: none
 .item-wrapper:hover>.btn-delete
-  display: block
+  display: flex
+  justify-content: center
+  align-items: center
 
 
 

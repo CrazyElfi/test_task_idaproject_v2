@@ -3,6 +3,9 @@
     <div class="filter">
       <select id="filter-types" name="filter-types" v-model="selected">
         <option disabled value="">По умолчанию</option>
+        <option value="">По цене min</option>
+        <option value="">По цене max</option>
+        <option value="">По наименованию</option>
       </select>
     </div>
 
