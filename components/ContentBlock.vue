@@ -10,7 +10,7 @@
     </div>
 
     <div class="catalog">
-      <itemCatalog v-for="n in 9" />
+      <itemCatalog v-for="n in 9" :key="n"/>
     </div>
   </div>
 </template>
