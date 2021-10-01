@@ -1,22 +1,44 @@
 <template>
   <div class="item-wrapper">
-    <button class="btn-delete">
+    <button
+      class="btn-delete"
+      @click="deleteItem(item.id)"
+    >
       <img src="@/assets/images/btn-delete.png">
     </button>
-    <img src="@/assets/images/item-img.png">
+    <img :src="item.imgUrl">
     <div class="infoProduct">
-      <a>Наименование товара</a>
-      <p>Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк</p>
+      <a>{{ item.name }}</a>
+      <p>{{ item.descr }}</p>
     </div>
-    <div class="price">
-      10 000 руб.
+    <div class="price"
+         v-model="maskPrice"
+    >
+      {{ maskPrice }} руб.
     </div>
   </div>
 </template>
 
 <script>
+import Api from '@/services/api'
 export default {
   name: 'itemCatalog',
+  props: {
+    item: {
+      type: Object,
+      required: true,
+    },
+  },
+  computed: {
+    maskPrice: function (){
+      return this.item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+    },
+  },
+  methods: {
+    deleteItem (id) {
+      Api.deleteItem(id)
+    }
+  }
 }
 </script>
 
@@ -26,33 +48,37 @@ export default {
   width: 332px
   height: 423px
   background: #FFFEFB
-  box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04), 0px 6px 10px rgba(0, 0, 0, 0.02)
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.04), 0 6px 10px rgba(0, 0, 0, 0.02)
   border-radius: 4px
   display: flex
   flex-direction: column
   color: #3F3F3F
   position: relative
   margin-bottom: 16px
+
   .infoProduct
     padding: 16px 16px 0
     display: flex
     flex-direction: column
     justify-content: space-between
+
     a
       font-weight: 600
       font-size: 20px
       line-height: 25px
       cursor: pointer
+
     p
       font-size: 16px
       line-height: 20px
+
   .price
     font-weight: 600
     font-size: 24px
     line-height: 30px
     padding: 16px 16px 24px
 
-.item-wrapper>.btn-delete
+.item-wrapper > .btn-delete
   display: none
   width: 32px
   height: 32px
@@ -60,14 +86,14 @@ export default {
   left: 310px
   top: -8px
   background: #FF8484
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1)
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
   border-radius: 10px
   border: none
-.item-wrapper:hover>.btn-delete
+
+.item-wrapper:hover > .btn-delete
   display: flex
   justify-content: center
   align-items: center
-
 
 
 </style>

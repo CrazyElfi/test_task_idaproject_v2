@@ -9,19 +9,26 @@
       </select>
     </div>
 
-    <div class="catalog">
-      <itemCatalog v-for="n in 9" :key="n"/>
-    </div>
+    <ItemsList
+      :items="items"
+    />
   </div>
 </template>
 
 <script>
+import API from '../services/api'
+
 export default {
   name: 'ContentBlock',
   data() {
     return {
-      selected: ''
+      selected: '',
+      items: []
     }
+  },
+  mounted () {
+    this.items = API.getItems()
+    console.log('items', this.items)
   }
 }
 </script>
@@ -40,7 +47,7 @@ export default {
       width: 122px
       height: 36px
       background: #FFFEFB
-      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1)
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1)
       border-radius: 4px
       padding: 10px 5px 10px 14px
       font-size: 12px
@@ -56,9 +63,4 @@ export default {
         border: none
         outline: none
         color: #B4B4B4
-  .catalog
-    width: 1028px
-    display: flex
-    flex-wrap: wrap
-    justify-content: space-between
 </style>

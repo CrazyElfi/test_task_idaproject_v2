@@ -54,14 +54,12 @@
         placeholder="Введите цену"
         @blur="validatePrice"
       >
-      <p>{{ this.price}}</p>
-      <p>{{ this.maskPrice}}</p>
 
       <p v-if="errorPrice"
         class="errorText">Поле является обязательным</p>
 
       <input
-        @click="checkForm"
+        @click="createNewItem"
         :disabled='isDisabledBtn'
         type="submit"
         value="Добавить товар"
@@ -74,6 +72,7 @@
 
 <script>
 import Index from '~/pages'
+import Api from '@/services/api'
 
 export default {
   name: 'FormAddProduct',
@@ -90,7 +89,6 @@ export default {
       errorImgUrl: false,
       errorPrice: false,
       // isDisabledBtn: true,
-
     }
   },
   computed: {
@@ -99,11 +97,11 @@ export default {
     },
     maskPrice: {
       get: function () {
-        console.log('this.price', this.price)
+        // console.log('this.price', this.price)
         return this.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
       },
       set: function (newValue) {
-        console.log('newValue', newValue)
+        // console.log('newValue', newValue)
         this.price = newValue.replace(/\s/g, '');
       }
     }
@@ -111,10 +109,10 @@ export default {
   methods: {
     checkForm(e) {
       // e.preventDefault();
-      console.log('checkForm')
+      // console.log('checkForm')
     },
     validateName() {
-      console.log('validateName')
+      // console.log('validateName')
       this.errorName = !this.name;
     },
     validateImgUrl() {
@@ -122,6 +120,23 @@ export default {
     },
     validatePrice() {
       this.errorPrice = !this.price;
+    },
+    validateForm() {
+      this.validateName()
+      this.validateImgUrl()
+      this.validatePrice()
+    },
+    createNewItem (e) {
+      e.preventDefault()
+      this.validateForm()
+      const newItem =  {
+        name: this.name,
+        descr: this.descr,
+        imgUrl: this.imgUrl,
+        price: this.price,
+      }
+      Api.createItem(newItem)
+
     }
 
   },
@@ -137,7 +152,7 @@ export default {
   margin: 15px 0 15px
   width: 332px
   min-height: 440px
-  box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04), 0px 6px 10px rgba(0, 0, 0, 0.02)
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.04), 0 6px 10px rgba(0, 0, 0, 0.02)
   border-radius: 4px
   font-style: normal
   font-weight: normal
@@ -178,7 +193,7 @@ export default {
     border-radius: 4px
     cursor: pointer
     border: none
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1)
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1)
   input
     height: 36px
     position: relative
