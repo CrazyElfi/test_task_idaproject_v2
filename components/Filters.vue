@@ -1,9 +1,10 @@
 <template>
   <div class="filter">
-    <select id="filter-types"
-            name="filter-types"
-            v-model="selected"
-            @change="updateFilter"
+    <select
+      id="filter-types"
+      v-model="selected"
+      name="filter-types"
+      @change="updateFilter"
     >
       <option
         v-for="(option, index) in options"
@@ -19,17 +20,17 @@
 <script>
 
 export default {
-  name: "Filters",
-  data() {
+  name: 'Filters',
+  data () {
     return {
       options: [
-        {  key: 'id', condition: 'ASC', label: "По умолчанию" },
-        {  key: 'price', condition: 'ASC', label: "По цене min" },
-        {  key: 'price', condition: 'DESC', label: "По цене max" },
-        {  key: 'name', condition: 'ASC', label: "По наименованию А-Я" },
-        {  key: 'name', condition: 'DESC', label: "По наименованию Я-А" },
+        { key: 'id', condition: 'ASC', label: 'По умолчанию' },
+        { key: 'price', condition: 'ASC', label: 'По цене min' },
+        { key: 'price', condition: 'DESC', label: 'По цене max' },
+        { key: 'name', condition: 'ASC', label: 'По наименованию А-Я' },
+        { key: 'name', condition: 'DESC', label: 'По наименованию Я-А' }
       ],
-      selected:  0, //default option. I dont like this magic number.
+      selected: 0 // default option. I dont like this magic number.
     }
   },
   mounted () {
@@ -38,7 +39,7 @@ export default {
   methods: {
     updateFilter () {
       console.log('emit updateFilter')
-      $nuxt.$emit('updateFilter', this.options[this.selected] )
+      $nuxt.$emit('updateFilter', this.options[this.selected])
     }
   }
 }

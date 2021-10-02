@@ -7,13 +7,12 @@
       <img src="@/assets/images/btn-delete.png">
     </button>
     <img :src="item.imgUrl">
-<!--    <img src="@/assets/images/item-img.png">-->
     <div class="infoProduct">
       <a>{{ item.name }}</a>
       <p>{{ item.descr }}</p>
     </div>
-    <div class="price"
-         v-model="maskPrice"
+    <div
+      class="price"
     >
       {{ maskPrice }} руб.
     </div>
@@ -23,17 +22,17 @@
 <script>
 import Api from '@/services/api'
 export default {
-  name: 'itemCatalog',
+  name: 'ItemCatalog',
   props: {
     item: {
       type: Object,
-      required: true,
-    },
+      required: true
+    }
   },
   computed: {
-    maskPrice: function (){
-      return this.item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
-    },
+    maskPrice: function () {
+      return this.item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+    }
   },
   methods: {
     deleteItem (id) {
@@ -95,6 +94,5 @@ export default {
   display: flex
   justify-content: center
   align-items: center
-
 
 </style>

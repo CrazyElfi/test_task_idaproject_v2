@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <FormAddProduct />
-    <ContentBlock/>
+    <ContentBlock />
   </div>
 </template>
 

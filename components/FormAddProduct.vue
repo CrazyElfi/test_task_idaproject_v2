@@ -1,127 +1,144 @@
 <template>
   <div>
-    <h2 class="title">Добавление товара</h2>
+    <h2 class="title">
+      Добавление товара
+    </h2>
     <form
       class="formAdding"
     >
-      <label for="name"
-             class="importantRow">
+      <label
+        for="name"
+        class="importantRow"
+      >
         Наименование товара
       </label>
       <input
+        id="name"
         v-model="name"
         name="name"
-        id="name"
         type="text"
         placeholder="Введите наименование товара"
         @blur="validateName"
-      />
-      <p v-if="errorName"
-        class="errorText">Поле является обязательным</p>
+      >
+      <p
+        v-if="errorName"
+        class="errorText"
+      >
+        Поле является обязательным
+      </p>
 
       <label for="descr">Описание товара</label>
       <textarea
+        id="descr"
         v-model="descr"
         name="descr"
-        id="descr"
         placeholder="Введите описание товара"
         rows="6"
-      > </textarea>
+      />
 
-      <label for="imgUrl"
-             class="importantRow">
+      <label
+        for="imgUrl"
+        class="importantRow"
+      >
         Ссылка на изображение товара
       </label>
       <input
+        id="imgUrl"
         v-model="imgUrl"
         name="imgUrl"
-        id="imgUrl"
         placeholder="Введите ссылку"
         @blur="validateImgUrl"
       >
-      <p v-if="errorImgUrl"
-        class="errorText">Поле является обязательным</p>
+      <p
+        v-if="errorImgUrl"
+        class="errorText"
+      >
+        Поле является обязательным
+      </p>
 
-      <label for="price"
-             class="importantRow">
+      <label
+        for="price"
+        class="importantRow"
+      >
         Цена товара
       </label>
       <input
+        id="price"
         v-model="maskPrice"
         name="price"
-        id="price"
         type="text"
         placeholder="Введите цену"
         @blur="validatePrice"
       >
 
-      <p v-if="errorPrice"
-        class="errorText">Поле является обязательным</p>
+      <p
+        v-if="errorPrice"
+        class="errorText"
+      >
+        Поле является обязательным
+      </p>
 
       <input
-        @click="createNewItem"
-        :disabled='isDisabledBtn'
+        id="btnSubmit"
+        :disabled="isDisabledBtn"
         type="submit"
         value="Добавить товар"
-        id="btnSubmit"
+        @click="createNewItem"
       >
     </form>
-
   </div>
 </template>
 
 <script>
-import Index from '~/pages'
 import Api from '@/services/api'
-
 export default {
   name: 'FormAddProduct',
-  components: { Index },
-  mounted () {},
-  data() {
+
+  data () {
     return {
       name: '',
       descr: '',
       imgUrl: null,
-      price: "",
+      price: '',
 
       errorName: false,
       errorImgUrl: false,
-      errorPrice: false,
+      errorPrice: false
       // isDisabledBtn: true,
     }
   },
   computed: {
-    isDisabledBtn: function() {
-      return !this.name || !this.imgUrl || !this.price;
+    isDisabledBtn: function () {
+      return !this.name || !this.imgUrl || !this.price
     },
     maskPrice: {
       get: function () {
         // console.log('this.price', this.price)
-        return this.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+        return this.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
       },
       set: function (newValue) {
         // console.log('newValue', newValue)
-        this.price = newValue.replace(/\s/g, '');
+        this.price = newValue.replace(/\s/g, '')
       }
     }
   },
+  mounted () {},
   methods: {
-    checkForm(e) {
+    checkForm (e) {
       // e.preventDefault();
       // console.log('checkForm')
     },
-    validateName() {
+    validateName () {
       // console.log('validateName')
-      this.errorName = !this.name;
+      this.errorName = !this.name
     },
-    validateImgUrl() {
-      this.errorImgUrl = !this.imgUrl;
+    validateImgUrl () {
+      this.errorImgUrl = !this.imgUrl
     },
-    validatePrice() {
-      this.errorPrice = !this.price;
+    validatePrice () {
+      this.errorPrice = !this.price
     },
-    validateForm() {
+    validateForm () {
       this.validateName()
       this.validateImgUrl()
       this.validatePrice()
@@ -130,15 +147,15 @@ export default {
     createNewItem (e) {
       e.preventDefault()
       this.validateForm()
-      const newItem =  {
+      const newItem = {
         name: this.name,
         descr: this.descr,
         imgUrl: this.imgUrl,
-        price: Number(this.price),
+        price: Number(this.price)
       }
       Api.createItem(newItem)
 
-      //clear form
+      // clear form
       this.name = '',
       this.descr = '',
       this.imgUrl = null,
@@ -149,7 +166,7 @@ export default {
       $nuxt.$emit('addedNewItem')
     }
 
-  },
+  }
 }
 </script>
 

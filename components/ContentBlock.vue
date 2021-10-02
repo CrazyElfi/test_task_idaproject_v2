@@ -4,7 +4,6 @@
     <ItemsList
       :items="items"
     />
-
   </div>
 </template>
 
@@ -13,27 +12,27 @@ import API from '../services/api'
 
 export default {
   name: 'ContentBlock',
-  data() {
+  data () {
     return {
       items: [],
-      selectedFilter: null,
+      selectedFilter: null
     }
   },
-  created() {
+  created () {
     this.onAddedNewItem()
     this.onUpdateFilter()
   },
   methods: {
-    onUpdateFilter() {
-      this.$nuxt.$on('updateFilter', (filter)=> {
+    onUpdateFilter () {
+      this.$nuxt.$on('updateFilter', (filter) => {
         this.selectedFilter = filter
         this.getItems()
       })
     },
-    onAddedNewItem() {
+    onAddedNewItem () {
       this.$nuxt.$on('addedNewItem', this.getItems)
     },
-    getItems(){
+    getItems () {
       this.items = API.getItems(this.selectedFilter)
     }
   }
