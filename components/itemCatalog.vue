@@ -7,6 +7,7 @@
       <img src="@/assets/images/btn-delete.png">
     </button>
     <img :src="item.imgUrl">
+<!--    <img src="@/assets/images/item-img.png">-->
     <div class="infoProduct">
       <a>{{ item.name }}</a>
       <p>{{ item.descr }}</p>

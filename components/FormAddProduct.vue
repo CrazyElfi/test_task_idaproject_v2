@@ -83,7 +83,7 @@ export default {
       name: '',
       descr: '',
       imgUrl: null,
-      price: "123213123134",
+      price: "",
 
       errorName: false,
       errorImgUrl: false,
@@ -126,6 +126,7 @@ export default {
       this.validateImgUrl()
       this.validatePrice()
     },
+
     createNewItem (e) {
       e.preventDefault()
       this.validateForm()
@@ -133,10 +134,19 @@ export default {
         name: this.name,
         descr: this.descr,
         imgUrl: this.imgUrl,
-        price: this.price,
+        price: Number(this.price),
       }
       Api.createItem(newItem)
 
+      //clear form
+      this.name = '',
+      this.descr = '',
+      this.imgUrl = null,
+      this.price = ''
+      this.addedNewItem()
+    },
+    addedNewItem () {
+      $nuxt.$emit('addedNewItem')
     }
 
   },
@@ -200,11 +210,12 @@ export default {
 
 #btnSubmit
   //background: #EEEEEE
-  background: #a52c2c
+  background: #7BAE73
   border-radius: 10px
   box-shadow: none
   margin-top: 25px
   height: 36px
+  color: #FFFFFF
 #btnSubmit:disabled
   background: #EEEEEE
 
