@@ -1,7 +1,11 @@
 <template>
   <div class="wrapper">
     <Filters />
+    <div v-if="spinner" id="spinner-wrapper">
+      <div class="lds-dual-ring" />
+    </div>
     <ItemsList
+      v-else
       :items="items"
     />
   </div>
@@ -15,7 +19,8 @@ export default {
   data () {
     return {
       items: [],
-      selectedFilter: null
+      selectedFilter: null,
+      spinner: true
     }
   },
   created () {
@@ -32,8 +37,13 @@ export default {
     onAddedNewItem () {
       this.$nuxt.$on('addedNewItem', this.getItems)
     },
-    getItems () {
-      this.items = API.getItems(this.selectedFilter)
+    async getItems () {
+      this.spinner = true
+      const result = await API.getItems(this.selectedFilter)
+      if (result) {
+        this.spinner = false
+        this.items = result
+      }
     }
   }
 }
@@ -44,4 +54,31 @@ export default {
   width: 100%
   //padding-left: 16px
   padding: 0 16px 16px 16px
+  position: relative
+  #spinner-wrapper
+    position: absolute
+    top: 50%
+    right: 50%
+
+.lds-dual-ring
+  display: inline-block
+  width: 80px
+  height: 80px
+
+.lds-dual-ring:after
+  content: " "
+  display: block
+  width: 64px
+  height: 64px
+  margin: 8px
+  border-radius: 50%
+  border: 6px solid #B4B4B4
+  border-color: #B4B4B4 transparent #B4B4B4 transparent
+  animation: lds-dual-ring 1.2s linear infinite
+
+@keyframes lds-dual-ring
+  0%
+    transform: rotate(0deg)
+  100%
+    transform: rotate(360deg)
 </style>

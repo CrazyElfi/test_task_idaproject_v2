@@ -236,7 +236,7 @@ export default {
     font-size: 12px
     line-height: 15px
     padding: 10px 16px
-
+    font-family: 'Source Sans Pro', sans-serif
     color: #B4B4B4
     /* Greys / 500 */
     outline: none

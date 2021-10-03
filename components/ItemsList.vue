@@ -1,11 +1,14 @@
 <template>
-  <div class="catalog">
-    <itemCatalog
+  <transition-group
+    name="catalog"
+    class="catalog"
+  >
+    <itemCard
       v-for="item in items"
       :key="item.id"
       :item="item"
     />
-  </div>
+  </transition-group>
 </template>
 
 <script>
@@ -27,4 +30,15 @@ export default {
   display: flex
   flex-wrap: wrap
   justify-content: space-between
+
+.catalog-enter-active, .catalog-leave-active
+  transition: all 1s
+
+.catalog-enter, .catalog-leave-to
+  opacity: 0
+  transform: translateY(30px)
+
+.catalog-move
+  transition: transform 1s
+
 </style>

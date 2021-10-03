@@ -36,6 +36,7 @@ export default {
   },
   methods: {
     deleteItem (id) {
+      console.log(id)
       Api.deleteItem(id)
     }
   }
@@ -55,8 +56,6 @@ export default {
   flex-direction: column
   color: #3F3F3F
   position: relative
-  //&:last-child
-  //  margin-right: 0
 
   .infoProduct
     padding: 16px 16px 0

@@ -71,7 +71,11 @@ const API = {
 
     if (filter) sortArrByKey(filter.key, items, filter.condition)
 
-    return items
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(items)
+      }, 5000)
+    })
   },
   createItem (item) {
     const newItem = {
