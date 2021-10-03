@@ -7,13 +7,16 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
+    "deploy": "gh-pages -d dist",
+    "deployRaw": "push-dir --dir=dist --branch=gh-pages --cleanup",
     "lint": "npm run lint:js",
     "lintfix": "eslint --fix --ext .js,.vue --ignore-path .gitignore .",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore ."
   },
   "dependencies": {
     "core-js": "^3.15.1",
-    "nuxt": "^2.15.7"
+    "nuxt": "^2.15.7",
+    "push-dir": "^0.4.1"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^6.0.1",
@@ -27,6 +30,7 @@
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-vue": "^7.18.0",
     "fibers": "^5.0.0",
+    "gh-pages": "^3.2.3",
     "sass": "^1.42.1",
     "sass-loader": "^10.2.0",
     "stylelint": "^13.13.1",

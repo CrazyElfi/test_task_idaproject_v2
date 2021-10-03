@@ -1,5 +1,11 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
+  ssr: false,
+  router: {
+    base: '/nuxt-gh-pages/'
+    // base: '/'
+  },
+  target: 'static',
   head: {
     title: 'test_task_idaproject_v2',
     htmlAttrs: {
@@ -19,6 +25,7 @@ export default {
       }
     ]
   },
+
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
