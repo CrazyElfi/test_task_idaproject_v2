@@ -21,10 +21,10 @@
         @blur="validateName"
       >
       <p
-        v-if="errorName"
+        v-if="errorNameMsg"
         class="errorText"
       >
-        Поле является обязательным
+        {{ errorNameMsg }}
       </p>
 
       <label for="descr">Описание товара</label>
@@ -50,10 +50,10 @@
         @blur="validateImgUrl"
       >
       <p
-        v-if="errorImgUrl"
+        v-if="errorImgUrlMsg"
         class="errorText"
       >
-        Поле является обязательным
+        {{ errorImgUrlMsg }}
       </p>
 
       <label
@@ -68,14 +68,15 @@
         name="price"
         type="text"
         placeholder="Введите цену"
-        @blur="validatePrice"
       >
+      <!--      <p> maskPrice :{{ maskPrice }}</p>-->
+      <!--      <p> price : {{ price }} </p>-->
 
       <p
-        v-if="errorPrice"
+        v-if="errorPriceMsg"
         class="errorText"
       >
-        Поле является обязательным
+        {{ errorPriceMsg }}
       </p>
 
       <input
@@ -91,6 +92,7 @@
 
 <script>
 import Api from '@/services/api'
+
 export default {
   name: 'FormAddProduct',
 
@@ -98,13 +100,12 @@ export default {
     return {
       name: '',
       descr: '',
-      imgUrl: null,
+      imgUrl: '',
       price: '',
 
-      errorName: false,
-      errorImgUrl: false,
-      errorPrice: false
-      // isDisabledBtn: true,
+      errorPriceMsg: '',
+      errorImgUrlMsg: '',
+      errorNameMsg: ''
     }
   },
   computed: {
@@ -113,52 +114,66 @@ export default {
     },
     maskPrice: {
       get: function () {
-        // console.log('this.price', this.price)
+        console.log('this.price', this.price)
         return this.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
       },
       set: function (newValue) {
-        // console.log('newValue', newValue)
-        this.price = newValue.replace(/\s/g, '')
+        console.log('old price', this.price)
+        console.log('set', newValue)
+
+        newValue = newValue.replace(/\s/g, '')
+        console.log('after replace', newValue)
+
+        console.log(`validatePrice value:${newValue} isValid: ${this.isValidPrice(newValue)}`)
+
+        this.isValidPrice(newValue)
+        // bonus ^_^
+        newValue = newValue.match(/[0-9]/g)
+        if (newValue) {
+          newValue = newValue.join('')
+        } else {
+          newValue = ''
+        }
+        console.log('after match ', newValue)
+
+        this.price = newValue
       }
     }
   },
-  mounted () {},
   methods: {
-    checkForm (e) {
-      // e.preventDefault();
-      // console.log('checkForm')
-    },
     validateName () {
-      // console.log('validateName')
-      this.errorName = !this.name
+      !this.name ? this.errorNameMsg = 'Поле является обязательным' : this.errorNameMsg = null
     },
     validateImgUrl () {
-      this.errorImgUrl = !this.imgUrl
+      !this.imgUrl ? this.errorImgUrlMsg = 'Поле является обязательным' : this.errorImgUrlMsg = null
     },
-    validatePrice () {
-      this.errorPrice = !this.price
-    },
-    validateForm () {
-      this.validateName()
-      this.validateImgUrl()
-      this.validatePrice()
+    isValidPrice (newValue) {
+      console.log('income value:', newValue)
+      !newValue ? this.errorPriceMsg = 'Поле является обязательным' : this.errorPriceMsg = null
+      if (this.errorPriceMsg) return !this.errorPriceMsg
+
+      const reg = new RegExp(/^\d+$/) // '123 = true', '123a = false'
+      const isDigit = reg.test(newValue)
+      isDigit ? this.errorPriceMsg = null : this.errorPriceMsg = 'Допустимы только цифры'
+
+      return !this.errorPriceMsg
     },
 
     createNewItem (e) {
       e.preventDefault()
-      this.validateForm()
+      // this.validateForm()
       const newItem = {
         name: this.name,
         descr: this.descr,
         imgUrl: this.imgUrl,
-        price: Number(this.price)
+        price: this.price
       }
       Api.createItem(newItem)
 
       // clear form
       this.name = ''
       this.descr = ''
-      this.imgUrl = null
+      this.imgUrl = ''
       this.price = ''
       this.addedNewItem()
     },
@@ -244,8 +259,14 @@ export default {
   height: 36px
   color: #FFFFFF
 
-#btnSubmit:disabled
-  background: #EEEEEE
+  &:hover
+    background: #65d555
+
+  &:focus
+    background: #3edb26
+
+  &:disabled
+    background: #EEEEEE
 
 .errorText
   font-size: 8px

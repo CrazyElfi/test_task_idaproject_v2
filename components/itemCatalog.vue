@@ -47,6 +47,7 @@ export default {
   //width: 33%
   width: 332px
   height: 423px
+  margin-bottom: 16px
   background: #FFFEFB
   box-shadow: 0 20px 30px rgba(0, 0, 0, 0.04), 0 6px 10px rgba(0, 0, 0, 0.02)
   border-radius: 4px
@@ -54,7 +55,8 @@ export default {
   flex-direction: column
   color: #3F3F3F
   position: relative
-  margin-bottom: 16px
+  //&:last-child
+  //  margin-right: 0
 
   .infoProduct
     padding: 16px 16px 0
@@ -67,6 +69,7 @@ export default {
       font-size: 20px
       line-height: 25px
       cursor: pointer
+      margin-bottom: 16px
 
     p
       font-size: 16px
@@ -77,8 +80,10 @@ export default {
     font-size: 24px
     line-height: 30px
     padding: 16px 16px 24px
+    position: absolute
+    bottom: 0
 
-.item-wrapper > .btn-delete
+.btn-delete
   display: none
   width: 32px
   height: 32px
@@ -89,6 +94,10 @@ export default {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
   border-radius: 10px
   border: none
+  &:hover
+    background: #ff5a5a
+  &:focus
+    background: #ff2222
 
 .item-wrapper:hover > .btn-delete
   display: flex

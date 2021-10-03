@@ -43,5 +43,5 @@ export default {
 .wrapper
   width: 100%
   //padding-left: 16px
-  padding: 16px
+  padding: 0 16px 16px 16px
 </style>
