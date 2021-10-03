@@ -93,6 +93,4 @@ export default {
 .item-wrapper:hover > .btn-delete
   display: flex
   justify-content: center
-  align-items: center
-
-</style>
+  align-items: center</style>

@@ -26,5 +26,4 @@ export default {
   width: 1028px
   display: flex
   flex-wrap: wrap
-  justify-content: space-between
-</style>
+  justify-content: space-between</style>

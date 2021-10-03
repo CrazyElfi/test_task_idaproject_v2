@@ -156,13 +156,14 @@ export default {
       Api.createItem(newItem)
 
       // clear form
-      this.name = '',
-      this.descr = '',
-      this.imgUrl = null,
+      this.name = ''
+      this.descr = ''
+      this.imgUrl = null
       this.price = ''
       this.addedNewItem()
     },
     addedNewItem () {
+      // eslint-disable-next-line no-undef
       $nuxt.$emit('addedNewItem')
     }
 
@@ -172,6 +173,7 @@ export default {
 
 <style lang="sass" scoped>
 .formAdding
+  letter-spacing: -0.02em
   display: flex
   flex-direction: column
   background-color: #FFFEFB
@@ -182,45 +184,53 @@ export default {
   box-shadow: 0 20px 30px rgba(0, 0, 0, 0.04), 0 6px 10px rgba(0, 0, 0, 0.02)
   border-radius: 4px
   font-style: normal
-  font-weight: normal
+  font-weight: 400
   font-size: 10px
   line-height: 13px
-  letter-spacing: -0.02em
 
   /* todo Temp / Darks / Lesser */
   color: #49485E
+
   label
     margin-bottom: 5px
     margin-top: 16px
     position: relative
+
     &:first-child
       margin-top: 0
+
     &.importantRow::after
       position: absolute
-      background-image: url("~@/assets/images/dot-important.png")
+      background-image: '~@/assets/images/dot-important.png'
       content: ''
       width: 4px
       height: 4px
       top: 1px
       border-radius: 50%
-    &[for='name']::after
+
+    &[ for = 'name' ]::after
       left: 95px
-    &[for='imgUrl']::after
+
+    &[ for = 'imgUrl' ]::after
       left: 135px
-    &[for='price']::after
+
+    &[ for = 'price' ]::after
       left: 55px
+
   input, textarea
     font-size: 12px
     line-height: 15px
     padding: 10px 16px
 
-    color: #B4B4B4 /* Greys / 500 */
+    color: #B4B4B4
+    /* Greys / 500 */
     outline: none
     background-color: transparent
     border-radius: 4px
     cursor: pointer
     border: none
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1)
+
   input
     height: 36px
     position: relative
@@ -233,6 +243,7 @@ export default {
   margin-top: 25px
   height: 36px
   color: #FFFFFF
+
 #btnSubmit:disabled
   background: #EEEEEE
 
@@ -240,5 +251,4 @@ export default {
   font-size: 8px
   line-height: 10px
   letter-spacing: -0.02em
-  color: #FF8484
-</style>
+  color: #FF8484</style>

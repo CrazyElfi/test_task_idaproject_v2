@@ -39,6 +39,7 @@ export default {
   methods: {
     updateFilter () {
       console.log('emit updateFilter')
+      // eslint-disable-next-line no-undef
       $nuxt.$emit('updateFilter', this.options[this.selected])
     }
   }
@@ -51,6 +52,7 @@ export default {
   width: 100%
   display: flex
   justify-content: flex-end
+
   #filter-types
     //width: 122px
     height: 36px
@@ -63,12 +65,14 @@ export default {
     border: none
     outline: none
 
-    color: #B4B4B4 /* todo Greys / 500 */
+    color: #B4B4B4
+    /* todo Greys / 500 */
+
     option
       background-color: #FFFEFB
       font-size: 12px
+
       line-height: 15px
       border: none
       outline: none
-      color: #B4B4B4
-</style>
+      color: #B4B4B4</style>

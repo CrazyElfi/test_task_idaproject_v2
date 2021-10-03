@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^6.0.1",
+    "@nuxtjs/stylelint-module": "^4.0.0",
     "eslint": "^7.32.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-import-resolver-nuxt": "^1.0.1",
@@ -27,6 +28,8 @@
     "eslint-plugin-vue": "^7.18.0",
     "fibers": "^5.0.0",
     "sass": "^1.42.1",
-    "sass-loader": "^10.2.0"
+    "sass-loader": "^10.2.0",
+    "stylelint": "^13.13.1",
+    "stylelint-order": "^4.1.0"
   }
 }

@@ -34,13 +34,22 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
+    // Simple usage
+    '@nuxtjs/stylelint-module'
+
+    // With options
+    // ['@nuxtjs/stylelint-module', { /* module options */ }]
   ],
+  stylelint: {
+    configFile: '.stylelintrc'
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  },
+  }
 }

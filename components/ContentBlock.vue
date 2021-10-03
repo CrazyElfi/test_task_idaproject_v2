@@ -44,5 +44,4 @@ export default {
   width: 100%
   //padding-left: 16px
   padding: 16px
-
 </style>
