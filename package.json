@@ -7,8 +7,7 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "deploy": "gh-pages -d dist",
-    "deployRaw": "push-dir --dir=dist --branch=gh-pages --cleanup",
+    "deploy": "git subtree push --prefix dist origin gh-pages ",
     "lint": "npm run lint:js",
     "lintfix": "eslint --fix --ext .js,.vue --ignore-path .gitignore .",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore ."

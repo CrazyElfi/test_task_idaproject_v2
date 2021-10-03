@@ -51,6 +51,21 @@
 - [x] Добавление прелодера на странице для плавной инициализации списка
 
 
+#### Отдельное спасибо [Boussadjra Brahim](https://stackoverflow.com/users/8172857/boussadjra-brahim) за инстуркцию деплоя
+[link](https://stackoverflow.com/questions/65250206/problem-with-deploy-nuxt-js-in-github-pages)
+1. remove the `dist` entry from `.gitignore` file
+2. run `npm run generate`
+3. run `git add .` then `git commit -m "deploy on gh-pages"`
+4. We need to add router base configuration in `nuxt.config.js`:
+```javascript
+target: 'static',
+        router: {
+  base: '/<repository-name>/'
+}
+```
+5.run `git subtree push --prefix dist origin gh-pages`
+
+Make sure to delete the current gh-pages branch before running these commands
 
 ## Build Setup
 
