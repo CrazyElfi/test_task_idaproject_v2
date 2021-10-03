@@ -1,9 +1,17 @@
 <template>
-  <div>
+  <div id="form-wrapper">
     <h2 class="title">
       Добавление товара
     </h2>
+    <button
+        v-if="!isFormHidden"
+      id="addItemBtn"
+      @click="isFormHidden = !isFormHidden"
+    >
+      +
+    </button>
     <form
+      v-show="isFormHidden"
       class="formAdding"
     >
       <label
@@ -102,7 +110,8 @@ export default {
       descr: '',
       imgUrl: '',
       price: '',
-
+      isFormHidden: false,
+      itemSize: null,
       errorPriceMsg: '',
       errorImgUrlMsg: '',
       errorNameMsg: ''
@@ -140,7 +149,17 @@ export default {
       }
     }
   },
+  mounted () {
+    window.addEventListener('resize', this.onResize)
+    this.onResize()
+  },
+  beforeUnmount () {
+    window.removeEventListener('resize', this.onResize)
+  },
   methods: {
+    onResize () {
+      this.itemSize = document.documentElement.clientWidth > 736 ? this.isFormHidden = true : this.isFormHidden = false
+    },
     validateName () {
       !this.name ? this.errorNameMsg = 'Поле является обязательным' : this.errorNameMsg = null
     },
@@ -245,13 +264,14 @@ export default {
     cursor: pointer
     border: none
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1)
+    &:focus
+      border: 1px solid #B4B4B4
 
   input
     height: 36px
     position: relative
 
 #btnSubmit
-  //background: #EEEEEE
   background: #7BAE73
   border-radius: 10px
   box-shadow: none
@@ -272,4 +292,15 @@ export default {
   font-size: 8px
   line-height: 10px
   letter-spacing: -0.02em
-  color: #FF8484</style>
+  color: #FF8484
+
+#addItemBtn
+  background: #7BAE73
+  border-radius: 10px
+  box-shadow: none
+  width: 100%
+  border: none
+  height: 36px
+  color: #FFFFFF
+
+</style>

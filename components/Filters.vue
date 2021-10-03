@@ -54,7 +54,6 @@ export default {
   justify-content: flex-end
 
   #filter-types
-    //width: 122px
     height: 36px
     background: #FFFEFB
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1)

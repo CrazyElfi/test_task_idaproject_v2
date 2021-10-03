@@ -2,6 +2,7 @@
   <transition-group
     name="catalog"
     class="catalog"
+    tag="div"
   >
     <itemCard
       v-for="item in items"
@@ -26,7 +27,6 @@ export default {
 
 <style lang="sass" scoped>
 .catalog
-  width: 1028px
   display: flex
   flex-wrap: wrap
   justify-content: space-between
@@ -39,6 +39,6 @@ export default {
   transform: translateY(30px)
 
 .catalog-move
-  transition: transform 1s
+  transition: transform 1.5s
 
 </style>

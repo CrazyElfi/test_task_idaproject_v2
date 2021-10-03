@@ -22,7 +22,8 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    '~/assets/sass/main.sass'
+    '~/assets/sass/main.sass',
+    '~/assets/sass/media.sass'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -35,14 +36,14 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // Simple usage
-    '@nuxtjs/stylelint-module'
+    // '@nuxtjs/stylelint-module'
 
     // With options
     // ['@nuxtjs/stylelint-module', { /* module options */ }]
   ],
-  stylelint: {
-    configFile: '.stylelintrc'
-  },
+  // stylelint: {
+  //   configFile: '.stylelintrc'
+  // },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [

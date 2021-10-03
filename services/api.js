@@ -74,7 +74,7 @@ const API = {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve(items)
-      }, 5000)
+      }, 1000)
     })
   },
   createItem (item) {

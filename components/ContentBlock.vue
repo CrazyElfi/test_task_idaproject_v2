@@ -1,11 +1,11 @@
 <template>
   <div class="wrapper">
     <Filters />
-    <div v-if="spinner" id="spinner-wrapper">
+    <div v-show="isSpinning" id="spinner-wrapper">
       <div class="lds-dual-ring" />
     </div>
     <ItemsList
-      v-else
+      v-show="!isSpinning"
       :items="items"
     />
   </div>
@@ -20,7 +20,7 @@ export default {
     return {
       items: [],
       selectedFilter: null,
-      spinner: true
+      isSpinning: true
     }
   },
   created () {
@@ -38,10 +38,10 @@ export default {
       this.$nuxt.$on('addedNewItem', this.getItems)
     },
     async getItems () {
-      this.spinner = true
+      this.isSpinning = true
       const result = await API.getItems(this.selectedFilter)
       if (result) {
-        this.spinner = false
+        this.isSpinning = false
         this.items = result
       }
     }
@@ -52,14 +52,13 @@ export default {
 <style lang="sass" scoped>
 .wrapper
   width: 100%
-  //padding-left: 16px
   padding: 0 16px 16px 16px
   position: relative
   #spinner-wrapper
-    position: absolute
-    top: 50%
-    right: 50%
-
+    height: 100%
+    display: flex
+    justify-content: center
+    align-items: center
 .lds-dual-ring
   display: inline-block
   width: 80px

@@ -45,7 +45,6 @@ export default {
 
 <style lang="sass" scoped>
 .item-wrapper
-  //width: 33%
   width: 332px
   height: 423px
   margin-bottom: 16px
