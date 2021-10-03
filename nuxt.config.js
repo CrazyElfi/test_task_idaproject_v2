@@ -2,7 +2,7 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   ssr: false,
   router: {
-    base: '/nuxt-gh-pages/'
+    base: '/test_task_idaproject_v2/'
     // base: '/'
   },
   target: 'static',
